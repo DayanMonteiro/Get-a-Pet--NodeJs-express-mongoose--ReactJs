@@ -22,10 +22,8 @@ const User = mongoose.model(
       },
       phone: {
         type: String,
-        required: true,
       },
     },
-    // timestamps cria automáticamente o createdAt e UpdatedAt
     { timestamps: true }
   )
 );
