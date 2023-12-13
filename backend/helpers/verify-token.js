@@ -5,11 +5,11 @@ const getToken = require("./get-token");
 const checkToken = (req, res, next) => {
   console.log("checkToken req", req.headers);
 
+  const token = getToken(req);
+
   if (!req.headers.authorization) {
     return res.status(401).json({ message: "Acesso negado. Sem autorização!" });
   }
-
-  const token = getToken(req);
 
   if (!token) {
     return res.status(401).json({ message: "Acesso negado. Sem Token!" });
