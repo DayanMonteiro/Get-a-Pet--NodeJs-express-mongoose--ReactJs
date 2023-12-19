@@ -5,9 +5,14 @@ import Login from "./components/pages/Auth/Login";
 import Register from "./components/pages/Auth/Register";
 import Home from "./components/pages/Home";
 
+/* components */
+import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
+
 function App() {
   return (
     <Router>
+      <Navbar />
       <Switch>
         <Route path="/login">
           <Login />
@@ -19,6 +24,7 @@ function App() {
           <Home />
         </Route>
       </Switch>
+      <Footer />
     </Router>
   );
 }
