@@ -288,4 +288,36 @@ module.exports = class PetController {
       message: `A visita foi agendada com sucesso, entre em contato com o ${pet.user.name} pelo telefone ${pet.user.phone}`,
     });
   }
+
+  static async concludeAdoption(req, res) {
+    const id = req.params.id;
+
+    // check if pet exists
+    const pet = await Pet.findOne({ _id: id });
+
+    if (!pet) {
+      res.status(404).json({ message: "Pet não encontrado!" });
+      return;
+    }
+
+    // check if logged in user register the pet
+    const token = getToken(req);
+    const user = await getUserByToken(token);
+
+    if (pet.user._id.toString() !== user._id.toString()) {
+      res.status(422).json({
+        message:
+          "Houve um problema em processar a sua solicitação, tente novamente mais tarde!",
+      });
+      return;
+    }
+
+    pet.available = false;
+
+    await Pet.findByIdAndUpdate(pet._id, pet);
+
+    res.status(200).json({
+      message: `${user.name} parabéns! Você acaba de adotar seu pet ${pet.name}`,
+    });
+  }
 };
