@@ -3,7 +3,7 @@ const getToken = require("./get-token");
 
 // middleware to validate token
 const checkToken = (req, res, next) => {
-  console.log("checkToken req", req.headers);
+  // console.log("checkToken req", req.headers);
 
   const token = getToken(req);
 
