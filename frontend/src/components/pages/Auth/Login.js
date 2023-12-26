@@ -8,33 +8,40 @@ import styles from "../../form/Form.module.css";
 import { Context } from "../../../context/UserContext";
 
 function Login() {
-  function handleOnChange(e) {
-    console.log(e);
+  const [user, setUser] = useState({});
+  const { login } = useContext(Context);
+
+  function handleChange(e) {
+    setUser({ ...user, [e.target.name]: e.target.value });
   }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    login(user);
+  };
+
   return (
     <section className={styles.form_container}>
       <h1>Login</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <Input
           text="E-mail"
           type="email"
           name="email"
-          placeholder="Digite o seu e-mail!"
-          handleOnChange={handleOnChange}
+          placeholder="Digite o e-mail"
+          handleOnChange={handleChange}
         />
-
         <Input
           text="Senha"
           type="password"
           name="password"
-          placeholder="Digite a sua senha!"
-          handleOnChange={handleOnChange}
+          placeholder="Digite a senha"
+          handleOnChange={handleChange}
         />
-
-        <Input type="submit" value="Entrar" />
+        <input type="submit" value="Entrar" />
       </form>
       <p>
-        Não tem conta? <Link to="/register">Clique aqui!</Link>
+        Não tem conta? <Link to="/register">Clique aqui.</Link>
       </p>
     </section>
   );
