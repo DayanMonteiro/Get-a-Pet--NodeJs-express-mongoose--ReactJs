@@ -9,7 +9,7 @@ import Home from "./components/pages/Home";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Container from "./components/layout/Container";
-import Message from "./components/form/Message";
+import Message from "./components/layout/Message";
 
 /* context */
 import { UserProvider } from "./context/UserContext";
