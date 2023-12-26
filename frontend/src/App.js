@@ -4,6 +4,7 @@ import React from "react";
 import Login from "./components/pages/Auth/Login";
 import Register from "./components/pages/Auth/Register";
 import Home from "./components/pages/Home";
+import Profile from "./components/pages/User/Profile";
 
 /* components */
 import Navbar from "./components/layout/Navbar";
@@ -27,6 +28,9 @@ function App() {
             </Route>
             <Route path="/register">
               <Register />
+            </Route>
+            <Route path="/user/profile">
+              <Profile />
             </Route>
             <Route path="/">
               <Home />
