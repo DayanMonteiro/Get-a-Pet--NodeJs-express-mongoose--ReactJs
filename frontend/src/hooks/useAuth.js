@@ -6,19 +6,18 @@ import { useHistory } from "react-router-dom";
 import useFlashMessage from "./useFlashMessage";
 
 export default function useAuth() {
-  const [authenticated, setAuthenticated] = useState(false)
-  const history = useHistory()
+  const [authenticated, setAuthenticated] = useState(false);
+  const history = useHistory();
   const { setFlashMessage } = useFlashMessage();
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token");
 
     if (token) {
-      api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`
-      setAuthenticated(true)
+      api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
+      setAuthenticated(true);
     }
-  }, [])
-
+  }, []);
 
   async function register(user) {
     let msgText = "Cadastro realizado com sucesso!";
@@ -37,14 +36,27 @@ export default function useAuth() {
   }
 
   async function authUser(data) {
-    setAuthenticated(true)
-    localStorage.setItem('token', JSON.stringify(data.token))
+    setAuthenticated(true);
+    localStorage.setItem("token", JSON.stringify(data.token));
 
-    history.push('/')
+    history.push("/");
+  }
+
+  function logout() {
+    const msgText = "Logout realizado com sucesso!";
+    const msgType = "success";
+
+    setAuthenticated(false);
+    localStorage.removeItem("token");
+    api.defaults.headers.Authorization = undefined;
+    history.push("/login");
+
+    setFlashMessage(msgText, msgType);
   }
 
   return {
     authenticated,
     register,
+    logout,
   };
 }
