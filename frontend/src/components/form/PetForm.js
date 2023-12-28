@@ -29,6 +29,7 @@ function PetForm({ handleSubmit, petData, btnText }) {
 
   const submit = (e) => {
     e.preventDefault();
+    //  console.log("cadastro de pet", pet);
     handleSubmit(pet);
   };
 
