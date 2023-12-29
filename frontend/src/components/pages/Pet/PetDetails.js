@@ -67,6 +67,9 @@ function PetDetails() {
           <p>
             <span className="bold">Idade:</span> {pet.age} anos
           </p>
+          <p>
+            <span className="bold">Descrição:</span> {pet.description}
+          </p>
           {token ? (
             <button onClick={schedule}>Solicitar uma Visita</button>
           ) : (

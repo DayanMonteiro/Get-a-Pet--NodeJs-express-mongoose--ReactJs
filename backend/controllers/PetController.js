@@ -8,7 +8,7 @@ const ObjectId = require("mongoose").Types.ObjectId;
 module.exports = class PetController {
   // create a pet
   static async create(req, res) {
-    const { name, age, weight, color } = req.body;
+    const { name, age, description, weight, color } = req.body;
     const images = req.files;
 
     const available = true;
@@ -48,6 +48,7 @@ module.exports = class PetController {
     const pet = new Pet({
       name,
       age,
+      description,
       weight,
       color,
       available,
@@ -163,7 +164,7 @@ module.exports = class PetController {
 
   static async updatePet(req, res) {
     const id = req.params.id;
-    const { name, age, weight, color, available } = req.body;
+    const { name, age, description, weight, color, available } = req.body;
     const images = req.files;
     console.log("req files", req.files);
     const updateData = {};
@@ -237,7 +238,7 @@ module.exports = class PetController {
       updateData.available = available;
     }
 
-    // updateData.description = description;
+    updateData.description = description;
 
     if (images && images.length > 0) {
       updateData.images = [];

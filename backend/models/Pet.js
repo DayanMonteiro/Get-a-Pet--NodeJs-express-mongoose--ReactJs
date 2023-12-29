@@ -13,6 +13,9 @@ const Pet = mongoose.model(
         type: Number,
         required: true,
       },
+      description: {
+        type: String,
+      },
       weight: {
         type: Number,
         required: true,

@@ -38,23 +38,6 @@ function PetForm({ handleSubmit, petData, btnText }) {
   return (
     <form onSubmit={submit} className={formStyles.form_container}>
       <div className={formStyles.preview_pet_images}>
-        {/* {preview.length > 0
-          ? preview.map((image, index) => (
-              <img
-                src={URL.createObjectURL(image)}
-                alt={pet.name}
-                key={`${pet.name}+${index}`}
-              />
-            ))
-          : pet.images &&
-            pet.images.map((image, index) => (
-              <img
-                src={`${REACT_APP_API}/images/pets/${image}`}
-                alt={pet.name}
-                key={`${pet.name}+${index}`}
-              />
-            ))}
-      </div> */}
         {(preview.length > 0 ? preview : pet.images || []).map(
           (image, index) => (
             <img
@@ -91,6 +74,14 @@ function PetForm({ handleSubmit, petData, btnText }) {
         placeholder="Digite a idade"
         handleOnChange={handleChange}
         value={pet.age || ""}
+      />
+      <Input
+        text="Descrição do Pet"
+        type="text-area"
+        name="description"
+        placeholder="Digite uma breve descrição do pet"
+        handleOnChange={handleChange}
+        value={pet.description || ""}
       />
       <Input
         text="Peso do Pet"
