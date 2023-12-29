@@ -237,7 +237,7 @@ module.exports = class PetController {
       updateData.available = available;
     }
 
-    //  updateData.description = description;
+    // updateData.description = description;
 
     if (images && images.length > 0) {
       updateData.images = [];

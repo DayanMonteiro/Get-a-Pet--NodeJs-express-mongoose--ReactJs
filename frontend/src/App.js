@@ -8,6 +8,7 @@ import Profile from "./components/pages/User/Profile";
 import MyPets from "./components/pages/Pet/MyPets";
 import AddPet from "./components/pages/Pet/AddPet";
 import PetDetails from "./components/pages/Pet/PetDetails";
+import MyAdoptions from "./components/pages/Pet/MyAdoptions";
 
 /* components */
 import Navbar from "./components/layout/Navbar";
@@ -44,6 +45,9 @@ function App() {
             </Route>
             <Route path="/pet/edit/:id">
               <EditPet />
+            </Route>
+            <Route path="/pet/myadoptions">
+              <MyAdoptions />
             </Route>
             <Route path="/pet/:id">
               <PetDetails />

@@ -13,6 +13,8 @@ function Profile() {
   const [preview, setPreview] = useState();
   const [token] = useState(localStorage.getItem("token") || "");
   const { setFlashMessage } = useFlashMessage();
+  // gambiarra pq n funciona com process.env
+  const REACT_APP_API = "http://localhost:5000";
 
   useEffect(() => {
     api
@@ -76,7 +78,7 @@ function Profile() {
             src={
               preview
                 ? URL.createObjectURL(preview)
-                : `${process.env.REACT_APP_API}/images/users/${user.image}`
+                : `${REACT_APP_API}/images/users/${user.image}`
             }
             alt={user.name}
           />
