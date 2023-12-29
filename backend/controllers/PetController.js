@@ -84,7 +84,6 @@ module.exports = class PetController {
     const user = await getUserByToken(token);
 
     const pets = await Pet.find({ "user._id": user._id });
-    //.sort("-createdAt");
 
     res.status(200).json({
       pets,
@@ -166,6 +165,7 @@ module.exports = class PetController {
     const id = req.params.id;
     const { name, age, weight, color, available } = req.body;
     const images = req.files;
+    console.log("req files", req.files);
     const updateData = {};
 
     // check if pet exists
@@ -230,14 +230,23 @@ module.exports = class PetController {
       });
     }
 
-    // if (!available) {
-    //   res.status(422).json({ message: "O status é obrigatório!" });
-    //   return;
-    // } else {
-    //   updateData.available = available;
-    // }
+    if (!available) {
+      res.status(422).json({ message: "O status é obrigatório!" });
+      return;
+    } else {
+      updateData.available = available;
+    }
 
-    // updateData.description = description;
+    //  updateData.description = description;
+
+    if (images && images.length > 0) {
+      updateData.images = [];
+      images.map((image) => {
+        updateData.images.push(image.filename);
+      });
+    } else {
+      updateData.images = pet.images || [];
+    }
 
     await Pet.findByIdAndUpdate(id, updateData);
 

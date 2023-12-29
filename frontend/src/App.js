@@ -16,6 +16,7 @@ import Message from "./components/layout/Message";
 
 /* context */
 import { UserProvider } from "./context/UserContext";
+import EditPet from "./components/pages/Pet/EditPet";
 
 function App() {
   return (
@@ -39,6 +40,9 @@ function App() {
             </Route>
             <Route path="/pet/add">
               <AddPet />
+            </Route>
+            <Route path="/pet/edit/:id">
+              <EditPet />
             </Route>
             <Route path="/">
               <Home />

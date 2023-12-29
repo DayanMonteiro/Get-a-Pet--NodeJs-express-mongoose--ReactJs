@@ -9,6 +9,8 @@ function PetForm({ handleSubmit, petData, btnText }) {
   const [pet, setPet] = useState(petData || {});
   const [preview, setPreview] = useState([]);
   const colors = ["Branco", "Preto", "Cinza", "Caramelo", "Mesclado"];
+  // gambiarra pq n funciona com process.env
+  const REACT_APP_API = "http://localhost:5000";
 
   function onFileChange(e) {
     // console.log(Array.from(e.target.files));
@@ -36,7 +38,7 @@ function PetForm({ handleSubmit, petData, btnText }) {
   return (
     <form onSubmit={submit} className={formStyles.form_container}>
       <div className={formStyles.preview_pet_images}>
-        {preview.length > 0
+        {/* {preview.length > 0
           ? preview.map((image, index) => (
               <img
                 src={URL.createObjectURL(image)}
@@ -47,11 +49,25 @@ function PetForm({ handleSubmit, petData, btnText }) {
           : pet.images &&
             pet.images.map((image, index) => (
               <img
-                src={`${process.env.REACT_APP_API}/images/pets/${image}`}
+                src={`${REACT_APP_API}/images/pets/${image}`}
                 alt={pet.name}
                 key={`${pet.name}+${index}`}
               />
             ))}
+      </div> */}
+        {(preview.length > 0 ? preview : pet.images || []).map(
+          (image, index) => (
+            <img
+              src={
+                preview.length > 0
+                  ? URL.createObjectURL(image)
+                  : `${REACT_APP_API}/images/pets/${image}`
+              }
+              alt={pet.name}
+              key={`${pet.name}+${index}`}
+            />
+          )
+        )}
       </div>
       <Input
         text="Imagens do Pet"
